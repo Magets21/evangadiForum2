@@ -1,33 +1,37 @@
-import axios from 'axios';
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { UserContext } from '../../context/UserContext';
-import "./AnswerQuestion.css"
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
+import "./AnswerQuestion.css";
 
 const AnswerQuestion = ({ questionId }) => {
   const [userData, setUserData] = useContext(UserContext);
   const [form, setForm] = useState({});
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4000/api/answer",
+      await axios.post(
+        "https://evangadiforum-backend-c6v6.onrender.com/api/answers",
         {
           id: userData.user.id,
           questionId: questionId,
-          answer:form.answer
+          answer: form.answer,
         }
-      );   
+      );
       window.location.reload(false);
     } catch (err) {
       console.log("problem", err);
     }
-  }
+  };
   return (
     <div className="container my-5">
-      <form onSubmit={handleSubmit} className="d-flex flex-column p-5 answer_form  justify-content-between">
+      <form
+        onSubmit={handleSubmit}
+        className="d-flex flex-column p-5 answer_form  justify-content-between"
+      >
         <h3 className="">Answer The Top Question</h3>
         <Link to="/" className="text-decoration-none text-reset cursor-pointer">
           Go to Question page
@@ -44,7 +48,7 @@ const AnswerQuestion = ({ questionId }) => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default AnswerQuestion
+export default AnswerQuestion;

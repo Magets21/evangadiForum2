@@ -3,13 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import "./SignUp.css";
-//to import icons 
+//to import icons
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 const SignUp = () => {
   const [form, setForm] = useState({});
-  const [userData, setUserData] = useContext(UserContext);  const [type, setType] = useState("password");
+  const [userData, setUserData] = useContext(UserContext);
+  const [type, setType] = useState("password");
   const navigate = useNavigate();
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,9 +18,12 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4000/api/users", form);
+      await axios.post(
+        "https://evangadiforum-backend-c6v6.onrender.com/api/users",
+        form
+      );
       const loginRes = await axios.post(
-        "http://localhost:4000/api/users/login",
+        "https://evangadiforum-backend-c6v6.onrender.com/api/users/login",
         {
           email: form.email,
           password: form.password,
@@ -117,7 +121,6 @@ const SignUp = () => {
               terms of serivice.
             </Link>
           </p>
-          
 
           <Link to="/login" className="a33 text-center">
             Already have an account?
@@ -126,9 +129,24 @@ const SignUp = () => {
         <div className="SignupNote container col-12 col-md-6 ms-md-2  mt-sm-5">
           <p className="forTitle">About</p>
           <h1>Evangadi Networks Q&A</h1>
-          <p className="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem voluptate officiis beatae nobis pariatur omnis facere accusamus laboriosam hic, adipisci vero reiciendis, recusandae sit ad, eum quisquam! Molestias, ut commodi!</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem voluptate officiis beatae nobis pariatur omnis facere accusamus laboriosam hic, adipisci vero reiciendis, recusandae sit ad, eum quisquam! Molestias, ut commodi!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum dolor odio harum sunt, quaerat, molestias fuga expedita ad excepturi officiis aliquam aut nemo ratione culpa id laborum ipsum porro tempore?</p>
+          <p className="lorem">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem
+            voluptate officiis beatae nobis pariatur omnis facere accusamus
+            laboriosam hic, adipisci vero reiciendis, recusandae sit ad, eum
+            quisquam! Molestias, ut commodi!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem
+            voluptate officiis beatae nobis pariatur omnis facere accusamus
+            laboriosam hic, adipisci vero reiciendis, recusandae sit ad, eum
+            quisquam! Molestias, ut commodi!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum dolor
+            odio harum sunt, quaerat, molestias fuga expedita ad excepturi
+            officiis aliquam aut nemo ratione culpa id laborum ipsum porro
+            tempore?
+          </p>
           <button className="btn1">HOW IT WORKS</button>
         </div>
       </div>

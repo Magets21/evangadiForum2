@@ -1,11 +1,12 @@
-const mysql = require('mysql');
+const mysql = require("mysql");
 
 const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.MYSQL_DB,
-    connectionLimit: 10
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.MYSQL_DB,
+  connectionLimit: 10,
+//   socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
 });
 
 let registration = `CREATE TABLE if not exists registration(
@@ -46,20 +47,20 @@ let answer = `CREATE TABLE if not exists answer(
     FOREIGN KEY (question_id) REFERENCES question(question_id)
 )`;
 pool.query(registration, (err, results) => {
-    if (err) throw err;
-    console.log('registration table created');
-})
+  if (err) throw err;
+  console.log("registration table created");
+});
 pool.query(profile, (err, results) => {
-    if (err) throw err;
-    console.log('profile table created');
-})
+  if (err) throw err;
+  console.log("profile table created");
+});
 pool.query(question, (err, results2) => {
-    if (err) throw err;
-    console.log('question table created');
-})
+  if (err) throw err;
+  console.log("question table created");
+});
 pool.query(answer, (err, results2) => {
-    if (err) throw err;
-    console.log('answer table created');
-})
+  if (err) throw err;
+  console.log("answer table created");
+});
 
 module.exports = pool;

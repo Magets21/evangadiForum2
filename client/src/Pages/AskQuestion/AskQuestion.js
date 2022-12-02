@@ -14,18 +14,19 @@ export default function AskQuestion() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4000/api/questions",
+      await axios.post(
+        "https://evangadiforum-backend-c6v6.onrender.com/api/questions",
         {
-          id:userData.user.id,
+          id: userData.user.id,
           question: form.question,
-          questionDescription: form.questionDescription
+          questionDescription: form.questionDescription,
         }
       );
       navigate("/");
     } catch (err) {
       console.log("problem", err);
     }
-  }
+  };
   return (
     <div className="container my-5">
       <div className="d-flex flex-column align-items-center my-5">
@@ -37,12 +38,21 @@ export default function AskQuestion() {
           <li>Review your question and post it to the site.</li>
         </ul>
       </div>
-      <form onSubmit={handleSubmit} className="d-flex flex-column p-5 question_form  justify-content-between">
+      <form
+        onSubmit={handleSubmit}
+        className="d-flex flex-column p-5 question_form  justify-content-between"
+      >
         <h3>Ask a public question</h3>
         <Link to="/" className="text-decoration-none text-reset cursor-pointer">
           Go to Question page
         </Link>
-        <input className="question_title" type="text" name="question" Placeholder="Title" onChange={handleChange} />
+        <input
+          className="question_title"
+          type="text"
+          name="question"
+          Placeholder="Title"
+          onChange={handleChange}
+        />
         <textarea
           className="question_input"
           placeholder="Question Description..."

@@ -19,12 +19,9 @@ function App() {
       localStorage.setItem("auth-token", "");
       token = "";
     } else {
-      const userRes = await axios.get(
-        "https://evangadiforum-backend-c6v6.onrender.com/api/users",
-        {
-          headers: { "x-auth-token": token },
-        }
-      );
+      const userRes = await axios.get("http://localhost:4000/api/users", {
+        headers: { "x-auth-token": token },
+      });
       // console.log(userRes);
       setUserData({
         token,

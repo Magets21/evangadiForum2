@@ -13,14 +13,11 @@ const AnswerQuestion = ({ questionId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://evangadiforum-backend-c6v6.onrender.com/api/answers",
-        {
-          id: userData.user.id,
-          questionId: questionId,
-          answer: form.answer,
-        }
-      );
+      await axios.post("http://localhost:4000/api/answers", {
+        id: userData.user.id,
+        questionId: questionId,
+        answer: form.answer,
+      });
       window.location.reload(false);
     } catch (err) {
       console.log("problem", err);

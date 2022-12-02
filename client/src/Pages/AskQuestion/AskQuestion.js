@@ -14,14 +14,11 @@ export default function AskQuestion() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://evangadiforum-backend-c6v6.onrender.com/api/questions",
-        {
-          id: userData.user.id,
-          question: form.question,
-          questionDescription: form.questionDescription,
-        }
-      );
+      await axios.post("http://localhost:4000/api/questions", {
+        id: userData.user.id,
+        question: form.question,
+        questionDescription: form.questionDescription,
+      });
       navigate("/");
     } catch (err) {
       console.log("problem", err);
